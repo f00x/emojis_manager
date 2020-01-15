@@ -8,9 +8,9 @@ const routes: Routes = [];
 @NgModule({
   imports: [RouterModule.forRoot([
 
-    { path: 'all', component: ListEmojiComponent, data: { WhiteListStatus: [EmojiStatus.default, EmojiStatus.favorite] } },
-    { path: 'favorite', component: ListEmojiComponent, data: { WhiteListStatus: [EmojiStatus.favorite] } },
-    { path: 'deleted', component: ListEmojiComponent, data: { WhiteListStatus: [EmojiStatus.deleted] } },
+    { path: 'all', component: ListEmojiComponent, data: { WhiteListStatus: [EmojiStatus.default, EmojiStatus.favorite],title:'Все' } },
+    { path: 'favorite', component: ListEmojiComponent, data: { WhiteListStatus: [EmojiStatus.favorite], title:'Любимые' } },
+    { path: 'deleted', component: ListEmojiComponent, data: { WhiteListStatus: [EmojiStatus.deleted], title:'Удалённые' } },
     { path: '**', redirectTo: 'all' },
   ])],
   exports: [RouterModule]

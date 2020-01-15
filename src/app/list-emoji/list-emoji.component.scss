@@ -1,6 +1,39 @@
-.btn .bi-search
+.btn .material-icons
 {
-    margin: -10px -5px -6px -6px;
-    width: 2em;
-    height: 2em;
+    margin: -0.1em -0.15em -0.1em -0.15em;
+    font-size: 2em;
+    position: relative;
+    display: block;
+}
+.preview_emoji
+{
+    width: 25px;
+    height: 25px;
+}
+.box_preview_emoji{
+    position:relative;
+.popup_preview_emoji
+{
+   
+    display:inline-block;
+    position:absolute;
+    transition: opacity 0.5s ease, left 0.2s ease, box-shadow 1s ease;
+    opacity: 0;
+    left: -25%;
+    max-width: 0px;
+    max-height: 0px;
+    border-radius: 3px;
+    box-shadow: #00000000 0 0px 7px 1px;
+    background: #fff;
+}
+&:hover .popup_preview_emoji, .popup_preview_emoji:hover
+{
+    opacity: 1;
+    max-width: 100px;
+    max-height: 100px;
+    box-shadow: #000000c7 0 0px 7px 1px;
+    left: -67%;
+    top: -10px;
+}
+
 }

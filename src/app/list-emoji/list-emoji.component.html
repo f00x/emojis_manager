@@ -1,14 +1,16 @@
 <nav class="head navbar navbar-light bg-ligh">
-    <div class="navbar-brand">list-emoji works!</div>
-    <div class="find_block form-inline"> <input class="form-control" type="text" placeholder="Find">
-        <div class="btn btn-outline-secondary "><svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M12.442 12.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"></path>
-            <path fill-rule="evenodd" d="M8.5 14a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM15 8.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"></path>
-          </svg></div>
+    <div class="navbar-brand">{{title}}</div>
+    <div class="find_block form-inline"> <input class="form-control" type="text" placeholder="Find" [(ngModel)]="searchQuery"  #box  (keyup.enter)="runFind()">
+        <div class="btn btn-outline-secondary " (click)="runFind()">
+                <i class="material-icons">search</i>
+           </div>
     </div>
 </nav>
 <div>
-<table class="table">
+     
+
+    
+<table class="table" *ngIf="isLoad; else Loading">
     <thead>
         <tr>
             <th scope="col">Имя</th>
@@ -20,13 +22,17 @@
     <tbody>
         <tr *ngFor="let emoji of listEmoji; index as productId">
             <td>{{emoji.key}}</td>
-            <td><a href="emoji.url">{{emoji.url}}</a></td>
-            <td><img src="emoji.url" alt=""></td>
-            <td><div class="btn-favorite"></div>
-                <div class="btn-delete"></div>
+            <td><a [attr.href]="emoji.url">{{emoji.url}}</a></td>
+            <td><div class="box_preview_emoji"><img class="preview_emoji"[attr.src]="emoji.url" alt=""><div class="popup_preview_emoji"><img [attr.src]="emoji.url" alt=""></div></div></td>
+            <td>
+            <div class="btn-group" role="group">
+                <div *ngIf="(emoji.status != EmojiStatus.deleted);" class="btn btn-outline-success"  (click)="setStatusEmoji(emoji,EmojiStatus.favorite)"><i class="material-icons" >{{emoji.status == EmojiStatus.favorite?'star':'star_border'}}</i></div>
+                <div class="btn btn-outline-danger" (click)=" setStatusEmoji(emoji,(emoji.status == EmojiStatus.deleted)?EmojiStatus.default:EmojiStatus.deleted) "><i class="material-icons" >{{emoji.status == EmojiStatus.deleted?'restore_from_trash':'delete_outline'}}</i></div>
+            </div>
             </td>
         </tr>
         
     </tbody>
 </table>
+<ng-template #Loading><div class='loading'>Идёт загрузка....</div></ng-template>
 </div>

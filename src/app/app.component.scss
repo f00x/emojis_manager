@@ -3,16 +3,32 @@
     display:inline-block;
 
     &.left-container
-    {     width: 250px;
+    {     width: 150px;
         padding: 10px;
         margin-right: 10px;
         border-radius: 0 10px 10px 0;
         box-shadow: #000000c7 0 0px 7px 1px;
-        top: 10px;
-        position: relative;
+        top: 20px;
+        position: fixed;
+        left: 0px;
+        z-index: 2;
+        background: #fffffff0;
+        transition: left 0.7s 0s ease;
+
+        &:hover
+        {
+            left: 0px;
+            transition: left 0.7s 1s ease;
+        }
+
+        menu{
+            padding: 0px;
+        }
     }
     &.right-container
     {
-        width: calc(100vw - 280px);
+        width: calc(100vw - 160px);
+        left: 160px;
+        position: relative;
     }
 }
